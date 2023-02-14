@@ -88,7 +88,7 @@ const Home: FC = () => {
 
   const allData: any = localStorage.getItem("foodData");
   const finalData: Food[] = JSON.parse(allData);
-  console.log(finalData, "data");
+
   const fat = localStorage.getItem("totalFat");
   const calories = localStorage.getItem("totalCalories");
   const colesterol = localStorage.getItem("totalColesterol");
