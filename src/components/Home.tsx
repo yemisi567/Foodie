@@ -33,27 +33,27 @@ const Home: FC = () => {
   };
 
   const foodData: Food[] = results;
-  const totalFat = foodData.map((item) => item.nf_total_fat);
+  const totalFat = foodData?.map((item) => item.nf_total_fat);
   const highestFat = Math.max(...totalFat);
   const finalFatDetails =
     foodData?.length > 1
       ? foodData.filter((item) => item.nf_total_fat === highestFat)
       : null;
-  const totalCalories = foodData.map((item) => item.nf_calories);
-  const totalColesterol = foodData.map((item) => item.nf_cholesterol);
+  const totalCalories = foodData?.map((item) => item.nf_calories);
+  const totalColesterol = foodData?.map((item) => item.nf_cholesterol);
   const highestColesterol = Math.max(...totalColesterol);
   const finalColesterolDetails =
     foodData?.length > 1
       ? foodData.filter((item) => item.nf_cholesterol === highestColesterol)
       : null;
 
-  const totalSodium = foodData.map((item) => item.nf_sodium);
+  const totalSodium = foodData?.map((item) => item.nf_sodium);
   const highestSodium = Math.max(...totalSodium);
   const finalSodiumDetails =
     foodData?.length > 1
       ? foodData.filter((item) => item.nf_sodium === highestSodium)
       : null;
-  const totalCarbohydrate = foodData.map((item) => item.nf_total_carbohydrate);
+  const totalCarbohydrate = foodData?.map((item) => item.nf_total_carbohydrate);
   const highestCarbohydrate = Math.max(...totalCarbohydrate);
   const finalCarbohydrateDetails =
     foodData?.length > 1
@@ -61,25 +61,25 @@ const Home: FC = () => {
           (item) => item.nf_total_carbohydrate === highestCarbohydrate
         )
       : null;
-  const totalFiber = foodData.map((item) => item.nf_dietary_fiber);
+  const totalFiber = foodData?.map((item) => item.nf_dietary_fiber);
   const highestFiber = Math.max(...totalFiber);
   const finalFiberDetails =
     foodData?.length > 1
       ? foodData.filter((item) => item.nf_dietary_fiber === highestFiber)
       : null;
-  const totalSugar = foodData.map((item) => item.nf_sugars);
+  const totalSugar = foodData?.map((item) => item.nf_sugars);
   const highestSugar = Math.max(...totalSugar);
   const finalSugarDetails =
     foodData?.length > 1
       ? foodData.filter((item) => item.nf_sugars === highestSugar)
       : null;
-  const totalProtien = foodData.map((item) => item.nf_protein);
+  const totalProtien = foodData?.map((item) => item.nf_protein);
   const highestProtien = Math.max(...totalProtien);
   const finalProtienDetails =
     foodData?.length > 1
       ? foodData.filter((item) => item.nf_protein === highestProtien)
       : null;
-  const totalPotassium = foodData.map((item) => item.nf_potassium);
+  const totalPotassium = foodData?.map((item) => item.nf_potassium);
   const highestPotassium = Math.max(...totalPotassium);
   const finalPotassiumDetails =
     foodData?.length > 1
@@ -88,7 +88,7 @@ const Home: FC = () => {
 
   const allData: any = localStorage.getItem("foodData");
   const finalData: Food[] = JSON.parse(allData);
-
+  console.log(finalData, "data");
   const fat = localStorage.getItem("totalFat");
   const calories = localStorage.getItem("totalCalories");
   const colesterol = localStorage.getItem("totalColesterol");
@@ -99,15 +99,18 @@ const Home: FC = () => {
   const fibre = localStorage.getItem("totalFibre");
   const potassium = localStorage.getItem("totalPotassium");
 
-  const totalLocalFat = finalData.map((item) => item.nf_total_fat);
-  const highestLocalFat = Math.max(...totalLocalFat);
+  const totalLocalFat =
+    finalData === null ? null : finalData?.map((item) => item.nf_total_fat);
+  const highestLocalFat =
+    finalData === null ? null : Math.max(...(totalLocalFat || []));
   const finalLocalFatDetails =
     finalData?.length > 1
       ? finalData.filter((item) => item.nf_total_fat === highestLocalFat)
       : null;
 
-  const totalLocalColesterol = finalData.map((item) => item.nf_cholesterol);
-  const highestLocalColesterol = Math.max(...totalLocalColesterol);
+  const totalLocalColesterol =
+    finalData === null ? null : finalData?.map((item) => item.nf_cholesterol);
+  const highestLocalColesterol = Math.max(...(totalLocalColesterol || []));
   const finalLocalColesterolDetails =
     finalData?.length > 1
       ? finalData.filter(
@@ -115,16 +118,18 @@ const Home: FC = () => {
         )
       : null;
 
-  const totalLocalSodium = finalData.map((item) => item.nf_sodium);
-  const highestLocalSodium = Math.max(...totalLocalSodium);
+  const totalLocalSodium =
+    finalData === null ? null : finalData?.map((item) => item.nf_sodium);
+  const highestLocalSodium = Math.max(...(totalLocalSodium || []));
   const finalLocalSodiumDetails =
     finalData?.length > 1
       ? finalData.filter((item) => item.nf_sodium === highestLocalSodium)
       : null;
-  const totalLocalCarbohydrate = finalData.map(
-    (item) => item.nf_total_carbohydrate
-  );
-  const highestLocalCarbohydrate = Math.max(...totalLocalCarbohydrate);
+  const totalLocalCarbohydrate =
+    finalData === null
+      ? null
+      : finalData?.map((item) => item.nf_total_carbohydrate);
+  const highestLocalCarbohydrate = Math.max(...(totalLocalCarbohydrate || []));
   const finalLocalCarbohydrateDetails =
     finalData?.length > 1
       ? finalData.filter(
@@ -132,26 +137,30 @@ const Home: FC = () => {
         )
       : null;
 
-  const totalLocalFiber = finalData.map((item) => item.nf_dietary_fiber);
-  const highestLocalFiber = Math.max(...totalLocalFiber);
+  const totalLocalFiber =
+    finalData === null ? null : finalData?.map((item) => item.nf_dietary_fiber);
+  const highestLocalFiber = Math.max(...(totalLocalFiber || []));
   const finalLocalFiberDetails =
     finalData?.length > 1
       ? finalData.filter((item) => item.nf_dietary_fiber === highestLocalFiber)
       : null;
-  const totalLocalSugar = finalData.map((item) => item.nf_sugars);
-  const highestLocalSugar = Math.max(...totalLocalSugar);
+  const totalLocalSugar =
+    finalData === null ? null : finalData?.map((item) => item.nf_sugars);
+  const highestLocalSugar = Math.max(...(totalLocalSugar || []));
   const finalLocalSugarDetails =
     finalData?.length > 1
       ? finalData.filter((item) => item.nf_sugars === highestLocalSugar)
       : null;
-  const totalLocalProtien = finalData.map((item) => item.nf_protein);
-  const highestLocalProtien = Math.max(...totalLocalProtien);
+  const totalLocalProtien =
+    finalData === null ? null : finalData?.map((item) => item.nf_protein);
+  const highestLocalProtien = Math.max(...(totalLocalProtien || []));
   const finalLocalProtienDetails =
     finalData?.length > 1
       ? finalData.filter((item) => item.nf_protein === highestLocalProtien)
       : null;
-  const totalLocalPotassium = finalData.map((item) => item.nf_potassium);
-  const highestLocalPotassium = Math.max(...totalLocalPotassium);
+  const totalLocalPotassium =
+    finalData === null ? null : finalData?.map((item) => item.nf_potassium);
+  const highestLocalPotassium = Math.max(...(totalLocalPotassium || []));
   const finalLocalPotassiumDetails =
     finalData?.length > 1
       ? finalData.filter((item) => item.nf_potassium === highestLocalPotassium)
